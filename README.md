@@ -2,6 +2,7 @@ def decoupIp(adrIp):
     """ Fonction qui à pour fonctionalité de transfomer une chaine de caratères en liste en prenant comme délimiteur le "." 
     paramètre :
                 adrIp est la chaine de caractère qui va être transforée en liste."""
+    
     decoup = adrIp.split(".")
     return decoup
 
@@ -10,6 +11,7 @@ def adressePrHôte(adrIp):
     paramètre :
                 adrIp est une liste de l'IP du sous-réseau.
                  """
+    
     adrIp[3] = str(int(adrIp[3]) + 1) 
     Ip = ".".join(adrIp)
     return Ip
@@ -20,6 +22,7 @@ def adresseDrHôte(adrIp,nbr):
                 adrIp est une liste de l'IP du sous-réseau.
                 nbr est le nombre d'hôtes demandé. 
                  """
+    
     adrIp[3] = str(int(adrIp[3]) + (nbr - 1 ))
     Ip = ".".join(adrIp)
     return Ip
@@ -30,6 +33,7 @@ def adrDiffusion(adrIp):
                 adrIp est une liste de l'IP du sous-réseau.
                 nbr est le nombre d'hôtes demandé. 
                  """
+    
     adrIp[3] = str(int(adrIp[3]) + 1)
     Ip = ".".join(adrIp)
     return Ip
@@ -40,6 +44,7 @@ def adrReseau(adrIp,nbr,cpt):
                 adrIp est une liste de l'IP du sous-réseau.
                 nbr est le nombre d'hôtes demandé. 
      """
+    
     adrIp[3]= str(0)            
     adrIp[3] = str(int(adrIp[3]) + (nbr + 2) * cpt)
     adrReseau = ".".join(adrIp)
@@ -49,6 +54,7 @@ def nombreSousReseaux(nbr):
     """ Fonction qui à pour fonctionalité de trouver le bon nombre de sous-réseaux par raport au puissance de 2 
     paramètre :
                 nbr est le nombre de sous-réseaux demandés."""
+    
     reseau = 2
     cpt = 1
     while nbr >= reseau :
@@ -60,6 +66,7 @@ def nbrSousReseau2(nbr):
     """ Fonction qui à pour fonctionalité de trouver le bon nombre de sous-réseaux grâce au nombre d'hôtes demandés
     paramètre :
                 nbr est le nombre d'hôtes demandé."""
+    
     octet = 255
     hôtes = octet / ( nbr + 2 )
     hôtes = round(hôtes)
@@ -69,6 +76,7 @@ def nombreHôtes(nbr):
     """ Fonction qui à pour fonctionalité de trouver le bon nombre d'hôtes possible par raport à la forme 2^^n -2 
     paramètre :
                 nbr est le nombre d'hôtes demandés."""
+    
     user = 2
     cpt = 1
     while nbr > user :
@@ -80,6 +88,7 @@ def nombreHôtes2(nbr):
     """ Fonction qui à pour fonctionalité de trouver le bon nombre d'hôtes possible par raport au nombre de sous-réseaux demandé
     paramètre :
                 nbr est le nombre de sous-réseaux demandés."""
+    
     octet = 255
     hôtes = round(octet / nbr )-2
     return hôtes  
@@ -88,6 +97,7 @@ def newMasqueReseau(masque,nbr):
     """ Fonction qui à pour fonctionalité de trouver Nouveau masque réseau 
     paramètre :
                 nbr est le nombre d'hôtes demandés."""
+    
     for cpt in range(0,4):
         if masque[cpt] == "0":
             octet = 254-nbr
@@ -105,6 +115,7 @@ def CIDR(cidr):
     """ Fonction qui à pour fonctionalité de transformer un masque sous forme CIDR en masque en octet  
     paramètre :
                 cidr est le masque à la forme CIDR."""
+    
     octet = ["0","0","0","0","0","0","0","0"]
     cpt2 = 0
     masque = []
@@ -134,6 +145,7 @@ def CIDR2(masque):
     """ Fonction qui à pour fonctionalité de transformer un masque sous forme d'octet en un masque sous forme CIDR. 
     paramètre :
                 masque est le masque à la forme d'octet."""
+    
     cidr = ["1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1","1",]
     masque = masque.split(".")
     valeurCidr = 0 
@@ -163,7 +175,8 @@ if masque[0] == "/":
     masque = CIDR(masque)
 
 
-#menu 
+# menu 
+
 while choix == "False": 
     
     menu = int(input("Définir le nombre d'hôtes (1) ou de sous-réseaux (2) ? "))
@@ -196,7 +209,7 @@ print("Nouveau masque réseau:",MasqueReseau,"(",cidrMasqueReseau,")")
 print("Nombre de sous-réseaux",nbrRéseau)
 print(" ")
 
-#affichage du premier sous-réseau 
+# affichage du premier sous-réseau 
 print("Résqeau n°1")
 print("Masque réseau:",MasqueReseau)
 print("Addresse réseau:",Ip) 
@@ -214,7 +227,7 @@ addrReseau = adrIp
 addrReseau[3]= str(nbrUser+2)
 addrReseau = ".".join(addrReseau)
 
-#affichage des sous-réseaux suivant 
+# affichage des sous-réseaux suivant 
 for cpt in range(2,nbrRéseau+1):
     adrIp =  decoupIp(addrReseau)
     prAdr = adressePrHôte(adrIp)
