@@ -1,8 +1,7 @@
 def decoupIp(adrIp):
     """ Fonction qui à pour fonctionalité de transfomer une chaine de caratères en liste en prenant comme délimiteur le "." 
     paramètre :
-                adrIp est la chaine de caractère qui va être transforée en liste.
-                 """
+                adrIp est la chaine de caractère qui va être transforée en liste."""
     decoup = adrIp.split(".")
     return decoup
 
